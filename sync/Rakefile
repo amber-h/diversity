@@ -1,0 +1,71 @@
+require 'net/https'
+require 'uri'
+require 'json'
+require 'rethinkdb'
+include RethinkDB::Shortcuts
+
+def get_json(uri_string, headers)
+  uri = URI.parse(uri_string)
+
+  http = Net::HTTP.new(uri.host, uri.port)
+
+  if uri.scheme.eql? 'https' then
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  end
+
+  request = Net::HTTP::Get.new(uri.request_uri)
+
+  headers.each do |key, value|
+    request[key] = value
+  end
+
+  response = http.request(request)
+
+  JSON.parse(response.body)
+end
+
+def get_people_from_jigsaw
+  page = 0
+  people = []
+
+  begin
+    page += 1
+
+    STDERR.puts "Retrieving people from page #{page}..."
+    people_from_page = get_json(
+      "https://jigsaw.thoughtworks.com/api/people/?page=#{page}",
+      {'Authorization' => ENV['JIGSAW_API_KEY']}
+    )
+    STDERR.puts "#{people_from_page.length} people retrieved from page #{page}."
+
+    people.concat(people_from_page)
+
+    sleep 5
+  end until people_from_page.empty?
+
+  people
+end
+
+def people_table_exists?
+  connection = r.connect(:host => 'rethinkdb', :port => 28015)
+  r.table_list().run(connection).include? 'people'
+end
+
+def create_people_table
+  connection = r.connect(:host => 'rethinkdb', :port => 28015)
+  r.table_create('people', {:primary_key => 'employeeId'}).run(connection)
+end
+
+def save_people_to_database(people)
+  create_people_table unless people_table_exists?
+
+  connection = r.connect(:host => 'rethinkdb', :port => 28015)
+  r.table('people').insert(people).run(connection)
+end
+
+task :default do
+  sleep 5
+  people = get_people_from_jigsaw
+  save_people_to_database(people)
+end

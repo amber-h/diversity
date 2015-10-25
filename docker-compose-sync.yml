@@ -1,0 +1,12 @@
+rethinkdb:
+  image: rethinkdb
+  ports:
+    - '8080:8080'
+  volumes:
+    - './data:/data'
+sync:
+  environment:
+    - JIGSAW_API_KEY
+  build: ./sync
+  links:
+    - rethinkdb
