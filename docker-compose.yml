@@ -12,6 +12,8 @@ server:
     - rethinkdb
 client:
   build: ./client
+  volumes:
+    - './client/html:/usr/share/nginx/html'
   links:
     - rethinkdb
   ports:
