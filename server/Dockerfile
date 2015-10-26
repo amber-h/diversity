@@ -1,4 +1,4 @@
 FROM ruby:onbuild
 
-ENTRYPOINT ["ruby"]
-CMD ["server.rb", "-o", "0.0.0.0"]
+ENTRYPOINT ["rackup"]
+CMD ["--host", "0.0.0.0", "-p", "4567"]
