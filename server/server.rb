@@ -7,5 +7,5 @@ get '/people' do
   connection = r.connect(:host => 'rethinkdb', :port => 28015)
 
   headers 'Access-Control-Allow-Origin' => '*'
-  body r.table('people').run(connection).entries.to_json
+  body r.db('dev').table('people').run(connection).entries.to_json
 end

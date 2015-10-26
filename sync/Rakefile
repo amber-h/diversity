@@ -4,6 +4,8 @@ require 'json'
 require 'rethinkdb'
 include RethinkDB::Shortcuts
 
+DB_NAME = 'dev'
+
 def get_json(uri_string, headers)
   uri = URI.parse(uri_string)
 
@@ -21,7 +23,6 @@ def get_json(uri_string, headers)
   end
 
   response = http.request(request)
-
   JSON.parse(response.body)
 end
 
@@ -47,25 +48,30 @@ def get_people_from_jigsaw
   people
 end
 
+def create_db name
+  connection = r.connect(:host => 'rethinkdb', :port => 28015)
+  r.db_create(name).run(connection)
+end
+
 def people_table_exists?
   connection = r.connect(:host => 'rethinkdb', :port => 28015)
-  r.table_list().run(connection).include? 'people'
+  r.db(DB_NAME).table_list().run(connection).include? 'people'
 end
 
 def create_people_table
   connection = r.connect(:host => 'rethinkdb', :port => 28015)
-  r.table_create('people', {:primary_key => 'employeeId'}).run(connection)
+  r.db(DB_NAME).table_create('people', {:primary_key => 'employeeId'}).run(connection)
 end
 
 def save_people_to_database(people)
   create_people_table unless people_table_exists?
-
   connection = r.connect(:host => 'rethinkdb', :port => 28015)
-  r.table('people').insert(people).run(connection)
+  r.db(DB_NAME).table('people').insert(people).run(connection)
 end
 
 task :default do
   sleep 5
   people = get_people_from_jigsaw
+  create_db DB_NAME
   save_people_to_database(people)
 end
