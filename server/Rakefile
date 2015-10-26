@@ -6,4 +6,10 @@ RSpec::Core::RakeTask.new(:spec) do |t|
   t.pattern = Dir.glob('spec/*_spec.rb')
 end
 
+task :run do
+  set :bind, '0.0.0.0'
+  set :port, 4567
+  Sinatra::Application.run!
+end
+
 task :default => :spec
