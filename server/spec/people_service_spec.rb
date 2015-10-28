@@ -4,19 +4,26 @@ require_relative '../people_service'
 describe 'People Service' do
 
   before(:each) do
-    @andrew = {'name':'Andrew', 'role': 'XD'}
-    @amber = {'name':'Amber', 'role': 'PM' }
+    @andrew = {name: 'Andrew', role: 'XD'}
+    @amber = {name: 'Amber', role: 'PM' }
     @people = [ @andrew, @amber ]
   end
 
-  it 'should accept people' do
+  it 'accepts people' do
     PeopleService.accept(@people)
     expect(PeopleService.get_people).to eq(@people)
   end
 
-  it 'find people by role' do
-    PeopleService.accept(@people)
-    expect(PeopleService.find_by_role 'XD').to eq([@andrew])
+  context 'finds people by role' do
+    it 'finds XDs' do
+      PeopleService.accept(@people)
+      expect(PeopleService.find_by_role 'XD').to eq([@andrew])
+    end
+
+    it 'finds PMs' do
+      PeopleService.accept(@people)
+      expect(PeopleService.find_by_role 'PM').to eq([@amber])
+    end
   end
 
 end

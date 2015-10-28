@@ -10,6 +10,6 @@ class PeopleService
   end
 
   def self.find_by_role role
-    [{:name=>"Andrew", :role=>"XD"}]
+    @@people.select { |person| person[:role].eql? role }
   end
 end
