@@ -1,9 +1,9 @@
 require 'json'
 require 'sinatra'
 require 'rethinkdb'
+require 'envyable'
 include RethinkDB::Shortcuts
-require 'dotenv'
-Dotenv.load
+Envyable.load('./config/env.yml', "#{ENV['RACK_ENV']}")
 
 get '/people' do
   connection = r.connect(:host => 'rethinkdb', :port => 28015)
