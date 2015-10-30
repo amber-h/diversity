@@ -22,7 +22,26 @@ define(["./index"], function (PhrasalTemplate) {
 
       it("can render a simple phrase", function () {
         var phrase = "A simple phrase";
-        expect(PhrasalTemplate(phrase).innerText).toBe(phrase)
+        expect(PhrasalTemplate(phrase)).toHaveText(phrase)
+      });
+
+      it("can render a phrase with slots", function () {
+        var phrase = [
+          {type: "collocation", value: "A "},
+          {type: "slot", value: {name: "type", options: ["simple", "complex"]}},
+          {type: "collocation", value: " phrase"}
+        ];
+
+        var phrasalTemplateElement = PhrasalTemplate(phrase);
+
+        var firstCollocationElement = phrasalTemplateElement.querySelector(".collocation:first-of-type");
+        var slotElement = phrasalTemplateElement.querySelector(".slot[data-name=type]");
+        var lastCollocationElement = phrasalTemplateElement.querySelector(".collocation:last-of-type");
+
+        expect(firstCollocationElement).toHaveText("A ");
+        expect(slotElement).toContainElement("option:first-of-type[value=simple]");
+        expect(slotElement).toContainElement("option:last-of-type[value=complex]");
+        expect(lastCollocationElement).toHaveText(" phrase");
       });
 
     });
