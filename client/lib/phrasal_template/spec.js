@@ -20,6 +20,11 @@ define(["./index"], function (PhrasalTemplate) {
         expect(PhrasalTemplate()).toHaveClass("phrasal-template");
       });
 
+      it("can render a simple phrase", function () {
+        var phrase = "A simple phrase";
+        expect(PhrasalTemplate(phrase).innerText).toBe(phrase)
+      });
+
     });
 
   });
