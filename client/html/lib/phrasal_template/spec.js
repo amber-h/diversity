@@ -20,28 +20,50 @@ define(["./index"], function (PhrasalTemplate) {
         expect(PhrasalTemplate()).toHaveClass("phrasal-template");
       });
 
-      it("can render a simple phrase", function () {
-        var phrase = "A simple phrase";
-        expect(PhrasalTemplate(phrase)).toHaveText(phrase)
+      it("can render a phrase with a collocation", function () {
+        var collocation = {type: "collocation", value: "This is a collocation"};
+
+        var phrasalTemplateElement = PhrasalTemplate([collocation]);
+        var collocationElement = phrasalTemplateElement.querySelector(".collocation");
+
+        expect(collocationElement).toHaveText(collocation.value);
       });
 
-      it("can render a phrase with slots", function () {
+      it("can render a phrase with a slot", function () {
+        var slot = {type: "slot", value: {name: "component", options: ["phrase", "slot"]}};
+
+        var phrasalTemplateElement = PhrasalTemplate([slot]);
+        var slotElement = phrasalTemplateElement.querySelector(".slot");
+
+        expect(slotElement).toHaveAttr("data-name", "component");
+
+        slot.value.options.forEach(function (option, index) {
+          var optionElement = slotElement.querySelector("option:nth-of-type(" + (index + 1) + ")");
+          expect(optionElement).toHaveAttr("label", option);
+        });
+      });
+
+      it("can render a phrase with collocations and slots", function () {
         var phrase = [
           {type: "collocation", value: "A "},
           {type: "slot", value: {name: "type", options: ["simple", "complex"]}},
-          {type: "collocation", value: " phrase"}
+          {type: "collocation", value: " phrase with "},
+          {type: "slot", value: {name: "component", options: ["phrases", "slots"]}}
         ];
 
         var phrasalTemplateElement = PhrasalTemplate(phrase);
 
         var firstCollocationElement = phrasalTemplateElement.querySelector(".collocation:first-of-type");
-        var slotElement = phrasalTemplateElement.querySelector(".slot[data-name=type]");
+        var firstSlotElement = phrasalTemplateElement.querySelector(".slot:first-of-type[data-name=type]");
         var lastCollocationElement = phrasalTemplateElement.querySelector(".collocation:last-of-type");
+        var lastSlotElement = phrasalTemplateElement.querySelector(".slot:last-of-type[data-name=component]");
 
         expect(firstCollocationElement).toHaveText("A ");
-        expect(slotElement).toContainElement("option:first-of-type[value=simple][label=simple]");
-        expect(slotElement).toContainElement("option:last-of-type[value=complex][label=complex]");
-        expect(lastCollocationElement).toHaveText(" phrase");
+        expect(firstSlotElement).toContainElement("option:first-of-type[value=simple][label=simple]");
+        expect(firstSlotElement).toContainElement("option:last-of-type[value=complex][label=complex]");
+        expect(lastCollocationElement).toHaveText(" phrase with ");
+        expect(lastSlotElement).toContainElement("option:first-of-type[value=phrases][label=phrases]");
+        expect(lastSlotElement).toContainElement("option:last-of-type[value=slots][label=slots]");
       });
 
     });
