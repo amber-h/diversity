@@ -9,7 +9,11 @@ define(["./index"], function (PhrasalTemplate) {
     it("is a function", function () {
       expect(typeof PhrasalTemplate).toBe("function");
     });
-    
+
+    it("returns a DOM element", function () {
+      expect(PhrasalTemplate()).toExist();
+    });
+
   });
 
 });

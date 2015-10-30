@@ -1,3 +1,6 @@
 define([], function () {
-  return function () {};
+  return function () {
+    var element = document.createElement("div");
+    return element;
+  };
 });
