@@ -12,9 +12,13 @@
     <script>
       require(["lib/phrasal_template/index"], function (PhrasalTemplate) {
         document.getElementById("query").appendChild(PhrasalTemplate([
-          {type: "collocation", value: "A "},
-          {type: "slot", value: {name: "type", options: ["simple", "complex"]}},
-          {type: "collocation", value: " phrase"}
+          {type: "collocation", value: "By "},
+          {type: "slot", value: {name: "group", options: ["gender"]}},
+          {type: "collocation", value: ", how many "},
+          {type: "slot", value: {name: "role", options: ["Dev", "BA", "QA", "PM"]}},
+          {type: "collocation", value: " ThoughtWorkers are there in "},
+          {type: "slot", value: {name: "location", options: ["the world"]}},
+          {type: "collocation", value: "?"},
         ]));
       });
     </script>
