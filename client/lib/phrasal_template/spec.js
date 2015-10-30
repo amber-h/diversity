@@ -1,6 +1,6 @@
 define(["./index"], function (PhrasalTemplate) {
 
-  describe("Phrasal template", function () {
+  describe("A phrasal template", function () {
 
     it("is defined", function () {
       expect(PhrasalTemplate).toBeDefined();
@@ -10,8 +10,16 @@ define(["./index"], function (PhrasalTemplate) {
       expect(typeof PhrasalTemplate).toBe("function");
     });
 
-    it("returns a DOM element", function () {
-      expect(PhrasalTemplate()).toExist();
+    describe("instance", function () {
+
+      it("is a DOM element", function () {
+        expect(PhrasalTemplate()).toExist();
+      });
+
+      it("has the phrasal-template class", function () {
+        expect(PhrasalTemplate()).toHaveClass("phrasal-template");
+      });
+
     });
 
   });
