@@ -39,8 +39,8 @@ define(["./index"], function (PhrasalTemplate) {
         var lastCollocationElement = phrasalTemplateElement.querySelector(".collocation:last-of-type");
 
         expect(firstCollocationElement).toHaveText("A ");
-        expect(slotElement).toContainElement("option:first-of-type[value=simple]");
-        expect(slotElement).toContainElement("option:last-of-type[value=complex]");
+        expect(slotElement).toContainElement("option:first-of-type[value=simple][label=simple]");
+        expect(slotElement).toContainElement("option:last-of-type[value=complex][label=complex]");
         expect(lastCollocationElement).toHaveText(" phrase");
       });
 

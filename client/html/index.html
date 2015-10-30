@@ -7,5 +7,16 @@
     <h1>Diversity</h1>
     <div id="query"></query>
     <table id="results"></table>
+    <script src="lib/require.js"></script>
+    <script src="bootstrap.js"></script>
+    <script>
+      require(["lib/phrasal_template/index"], function (PhrasalTemplate) {
+        document.getElementById("query").appendChild(PhrasalTemplate([
+          {type: "collocation", value: "A "},
+          {type: "slot", value: {name: "type", options: ["simple", "complex"]}},
+          {type: "collocation", value: " phrase"}
+        ]));
+      });
+    </script>
   </body>
 </html>

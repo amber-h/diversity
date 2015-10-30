@@ -24,6 +24,7 @@ define([], function () {
             phraseComponentElement.setAttribute("data-name", phraseComponent.value.name);
             phraseComponent.value.options.forEach(function (option) {
               var optionElement = document.createElement("option");
+              optionElement.label = option;
               optionElement.value = option;
               phraseComponentElement.appendChild(optionElement);
             });
