@@ -1,11 +1,9 @@
 define([], function () {
   return function (phrase) {
-    var element = document.createElement("div");
-
-    element.classList.add("phrasal-template");
+    var element = $("<div>").addClass("phrasal-template");
 
     if (typeof phrase === "string") {
-      element.innerText = phrase;
+      element.text(phrase);
     }
 
     if (Array.isArray(phrase)) {
@@ -14,29 +12,26 @@ define([], function () {
 
         switch (phraseComponent.type) {
           case "collocation":
-            phraseComponentElement = document.createElement("span");
-            phraseComponentElement.classList.add("collocation");
-            phraseComponentElement.innerText = phraseComponent.value;
+            phraseComponentElement = $("<span>").addClass("collocation").text(phraseComponent.value);
           break;
           case "slot":
-            phraseComponentElement = document.createElement("select");
-            phraseComponentElement.classList.add("slot");
-            phraseComponentElement.setAttribute("data-name", phraseComponent.value.name);
+            phraseComponentElement = $("<select>").addClass("slot");
+            phraseComponentElement.attr("data-name", phraseComponent.value.name);
+
             phraseComponent.value.options.forEach(function (option) {
-              var optionElement = document.createElement("option");
-              optionElement.label = option;
-              optionElement.value = option;
-              phraseComponentElement.appendChild(optionElement);
+              var optionElement = $("<option>");
+              optionElement.attr("value", option).text(option);
+
+              phraseComponentElement.append(optionElement);
             });
           break;
           default:
           break;
         }
-
-        element.appendChild(phraseComponentElement);
+        element.append(phraseComponentElement);
       });
     }
 
-    return element;
+    return element.html();
   };
 });
