@@ -1,6 +1,6 @@
 define([], function () {
   return function (phrase) {
-    var element = $("<div>").addClass("phrasal-template");
+    var element = $("<div class='phrasal-template'>");
 
     if (typeof phrase === "string") {
       element.text(phrase);
@@ -12,15 +12,14 @@ define([], function () {
 
         switch (phraseComponent.type) {
           case "collocation":
-            phraseComponentElement = $("<span>").addClass("collocation").text(phraseComponent.value);
+            phraseComponentElement = $("<span class='collocation'>").text(phraseComponent.value);
           break;
           case "slot":
             phraseComponentElement = $("<select>").addClass("slot");
             phraseComponentElement.attr("data-name", phraseComponent.value.name);
 
             phraseComponent.value.options.forEach(function (option) {
-              var optionElement = $("<option>");
-              optionElement.attr("value", option).text(option);
+              var optionElement = $("<option value='"+option+"' label='"+option+"'>");
 
               phraseComponentElement.append(optionElement);
             });
@@ -32,6 +31,6 @@ define([], function () {
       });
     }
 
-    return element.html();
+    return element[0];
   };
 });
