@@ -8,10 +8,11 @@
     <div id="query"></query>
     <table id="results"></table>
     <script src="lib/require.js"></script>
+    <script src="lib/jquery.js"></script>
     <script src="bootstrap.js"></script>
     <script>
       require(["lib/phrasal_template/index"], function (PhrasalTemplate) {
-        document.getElementById("query").appendChild(PhrasalTemplate([
+        $("#query").append(PhrasalTemplate([
           {type: "collocation", value: "By "},
           {type: "slot", value: {name: "group", options: ["gender"]}},
           {type: "collocation", value: ", how many "},
