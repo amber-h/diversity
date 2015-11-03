@@ -67,13 +67,13 @@ define(["./index"], function (PhrasalTemplate) {
       });
 
       it("can respond to a slot action", function (done) {
-        var action = [{type: "slot", value: {name: "group", options: ["gender"], onChange: done }}];
+        var action = [{type: "slot", value: {name: "group", options: ["gender"], onchange: done }}];
 
         var phrasalTemplateElement = PhrasalTemplate(action);
 
         var slotElement = phrasalTemplateElement.querySelector(".slot");
 
-        $(slotElement).trigger('change');
+        $(slotElement).trigger("change");
       });
 
     });

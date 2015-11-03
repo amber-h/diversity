@@ -1,6 +1,6 @@
 define([], function () {
   return function (phrase) {
-    var element = $("<div class='phrasal-template'>");
+    var element = $("<div>").addClass("phrasal-template");
 
     if (typeof phrase === "string") {
       element.text(phrase);
@@ -12,15 +12,20 @@ define([], function () {
 
         switch (phraseComponent.type) {
           case "collocation":
-            phraseComponentElement = $("<span class='collocation'>").text(phraseComponent.value);
+            phraseComponentElement = $("<span>").addClass("collocation").text(phraseComponent.value);
           break;
           case "slot":
             phraseComponentElement = $("<select>").addClass("slot");
             phraseComponentElement.attr("data-name", phraseComponent.value.name);
-            phraseComponentElement.on("change", phraseComponent.value.onChange);
+            phraseComponentElement.on("change", function () {
+              phraseComponent.value.onchange({name: phraseComponent.value.name, value: phraseComponentElement.val()});
+            });
 
             phraseComponent.value.options.forEach(function (option) {
-              var optionElement = $("<option value='"+option+"' label='"+option+"'>");
+              var optionElement = $("<option>");
+              optionElement.attr("value", option)
+              optionElement.attr("label", option)
+
               phraseComponentElement.append(optionElement);
             });
           break;
