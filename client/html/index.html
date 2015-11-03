@@ -14,11 +14,11 @@
       require(["lib/phrasal_template/index"], function (PhrasalTemplate) {
         $("#query").append(PhrasalTemplate([
           {type: "collocation", value: "By "},
-          {type: "slot", value: {name: "group", options: ["gender"]}},
+          {type: "slot", value: {name: "group", options: ["gender"]}, onChange: function (event) {}},
           {type: "collocation", value: ", how many "},
-          {type: "slot", value: {name: "role", options: ["Dev", "BA", "QA", "PM"]}},
+          {type: "slot", value: {name: "role", options: ["Dev", "BA", "QA", "PM"], onChange: function (event) {}}},
           {type: "collocation", value: " ThoughtWorkers are there in "},
-          {type: "slot", value: {name: "location", options: ["the world"]}},
+          {type: "slot", value: {name: "location", options: ["The World", "North America"]}, onChange: function (event) {}},
           {type: "collocation", value: "?"},
         ]));
       });

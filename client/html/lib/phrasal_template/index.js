@@ -17,10 +17,10 @@ define([], function () {
           case "slot":
             phraseComponentElement = $("<select>").addClass("slot");
             phraseComponentElement.attr("data-name", phraseComponent.value.name);
+            phraseComponentElement.on("change", phraseComponent.value.onChange);
 
             phraseComponent.value.options.forEach(function (option) {
               var optionElement = $("<option value='"+option+"' label='"+option+"'>");
-
               phraseComponentElement.append(optionElement);
             });
           break;

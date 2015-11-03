@@ -66,6 +66,16 @@ define(["./index"], function (PhrasalTemplate) {
         expect(lastSlotElement).toContainElement("option:last-of-type[value=slots][label=slots]");
       });
 
+      it("can respond to a slot action", function (done) {
+        var action = [{type: "slot", value: {name: "group", options: ["gender"], onChange: done }}];
+
+        var phrasalTemplateElement = PhrasalTemplate(action);
+
+        var slotElement = phrasalTemplateElement.querySelector(".slot");
+
+        $(slotElement).trigger('change');
+      });
+
     });
 
   });
