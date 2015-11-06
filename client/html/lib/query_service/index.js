@@ -1,11 +1,7 @@
 define([], function () {
+  return function(query) {
+    var results = {};
+    return results;
+  };
 
-  var queryBuilder = function () {
-    var options = {};
-    return function(newOption) {
-      options[newOption.name] = newOption.value;
-    return options;
-  }};
-
-  return queryBuilder;
 });
