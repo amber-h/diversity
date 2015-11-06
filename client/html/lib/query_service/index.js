@@ -1,5 +1,5 @@
 define([], function () {
-  return function(query) {
+  return function(queryOptions) {
     var results = {};
     return results;
   };

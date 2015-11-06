@@ -11,7 +11,7 @@ define(["./index"], function (QueryService) {
         expect(typeof QueryService).toBe("function");
       });
 
-      it("returns query options", function() {
+      it("returns query results", function() {
           var newQueryOption = {};
 
           var queryResults = QueryService(newQueryOption);
