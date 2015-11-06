@@ -11,22 +11,32 @@
     <script src="lib/jquery.js"></script>
     <script src="bootstrap.js"></script>
     <script>
-      require(["lib/phrasal_template/index"], function (PhrasalTemplate) {
+      require(["lib/phrasal_template/index", "lib/query_service/index"], function (PhrasalTemplate, QueryBuilder) {
+        var defaultGroup = {name : "group", value : "gender" };
+        var defaultRole = {name : "role", value : "PS" };
+        var defaultLocation = {name : "location", value : "The World" };
+
+        var defaultOptions = [defaultGroup, defaultRole, defaultLocation];
+        defaultOptions.forEach(function(option) {
+          QueryBuilder(option);
+        });
+
         $("#query").append(PhrasalTemplate([
           {type: "collocation", value: "By "},
           {type: "slot", value: {name: "group", options: ["gender"], onchange: function (value) {
-            console.log(value);
+            QueryBuilder(value);
           }}},
           {type: "collocation", value: ", how many "},
           {type: "slot", value: {name: "role", options: ["PS", "Dev", "BA", "QA", "PM"], onchange: function (value) {
-            console.log(value);
+            QueryBuilder(value);
           }}},
           {type: "collocation", value: " ThoughtWorkers are there in "},
-          {type: "slot", value: {name: "location", options: ["The World", "North America"]}, onchange: function (value) {
-            console.log(value);
-          }},
+          {type: "slot", value: {name: "location", options: ["The World", "North America"], onchange: function (value) {
+            QueryBuilder(value);
+          }}},
           {type: "collocation", value: "?"},
         ]));
+
       });
     </script>
   </body>
