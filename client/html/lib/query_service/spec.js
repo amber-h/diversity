@@ -11,7 +11,7 @@ define(["./index"], function (QueryService) {
         expect(typeof QueryService).toBe("function");
       });
 
-      it("returns a query options map", function() {
+      it("returns query options", function() {
           var newQueryOption = {};
 
           var queryOptions = QueryService(newQueryOption);
@@ -19,7 +19,7 @@ define(["./index"], function (QueryService) {
           expect(queryOptions).toBeDefined();
       });
 
-      it("returns a query options map with default values", function() {
+      it("returns query options with default values", function() {
         var defaultLocation = {  name: "location", value: "Chicago" };
         var defaultRole = { name: "role", value: "PM" };
 
@@ -34,7 +34,7 @@ define(["./index"], function (QueryService) {
         expect(queryOptions.role).toEqual("PM");
       });
 
-      it("returns a query options map with an updated value", function() {
+      it("returns query options with an updated value", function() {
         var defaultLocation = {  name: "location", value: "Chicago" };
         var defaultRole = { name: "role", value: "PM" };
 
