@@ -2,3 +2,5 @@
 .bundle
 data/**
 sync/.env
+.idea/
+*.iml
