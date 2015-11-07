@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans';
+}
+
+h1 {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 1);
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+select {
+  font-family: 'Open Sans';
+  font-size: 1.3rem;
+  -webkit-appearance: none;
+  border: none;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 0;
+}
+
+option {
+  text-align: center;
+}
+
+.slot {
+  background-color: rgba(17, 170, 88, 0.3);
+  height: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.header {
+  padding-top: 0.01rem;
+  padding-bottom: 0.01rem;
+  background-color: rgba(38, 189, 207, 1);
+}
+
+.phrasal-template {
+  padding: 3rem;
+  font-size: 1.3rem;
+  text-align: center;
+  font-weight: 100;
+}
+
+@media (max-width:500px) {
+  .slot { width: 100%;}
+}
