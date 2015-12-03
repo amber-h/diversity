@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../people_service'
+require_relative '../lib/people_service'
 
 describe 'People Service' do
 
