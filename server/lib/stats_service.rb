@@ -4,10 +4,8 @@ class StatsService
     female_count = (filter_by_gender Array.new(thoughtworkers), "Female").count
     male_count = (filter_by_gender Array.new(thoughtworkers), "Male").count
 
-    total = thoughtworkers.count
-
-    male_percentage = percentage male_count, total
-    female_percentage = percentage female_count, total
+    male_percentage = percentage male_count, thoughtworkers.count
+    female_percentage = percentage female_count, thoughtworkers.count
 
     { :male => {
           :count => male_count,
