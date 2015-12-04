@@ -17,5 +17,4 @@ class ThoughtWorkerRepository
     people.filter(:role => {:name => role}).run(@connection).entries
   end
 
-
 end

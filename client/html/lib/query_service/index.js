@@ -5,6 +5,7 @@ define(['../results_table/index'], function(ResultsTable) {
       $.post("http://192.168.99.100:4567/stats", JSON.stringify(request),
         function(data, status) {
           $('#results').empty()
+          $('#results').append()
           $('#results').append(ResultsTable(JSON.parse(data)));
         });
     };

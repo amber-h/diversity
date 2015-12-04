@@ -24,8 +24,13 @@ table {
   margin: auto;
 }
 
-td {
-  width: 50px;
+table, th, td {
+    border-bottom: 1px solid #333;
+    border-collapse: collapse;
+}
+td, th {
+  width: 100px;
+  padding: 10px;
   text-align: center;
 }
 
@@ -34,7 +39,7 @@ option {
 }
 
 .slot {
-  background-color: rgba(17, 170, 88, 0.3);
+  background-color: rgba(60, 188, 141, 0.7);
   height: 3rem;
   padding-left: 1rem;
   padding-right: 1rem;
