@@ -27,7 +27,7 @@ class StatsService
   end
 
   def percentage count, total
-    ( count / total.to_f ) * 100
+    (( count / total.to_f ) * 100).round(2)
   end
 
 end
