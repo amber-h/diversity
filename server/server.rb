@@ -1,5 +1,6 @@
 require 'json'
 require 'sinatra'
+require './lib/stats_service'
 require './lib/thoughtworker_repository'
 
 class Server < Sinatra::Base
@@ -15,7 +16,10 @@ class Server < Sinatra::Base
     queryOptions = JSON.parse request.body.read
 
     headers 'Access-Control-Allow-Origin' => '*'
-    body ThoughtWorkerRepository.new.find_by_role_and_location queryOptions["role"], queryOptions["location"]
+    thoughtworkers = ThoughtWorkerRepository.new.find_by_role_and_location queryOptions["role"], queryOptions["location"]
+
+    response = StatsService.new.by_gender thoughtworkers
+    body response.to_json
   end
 
 

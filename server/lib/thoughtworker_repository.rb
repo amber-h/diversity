@@ -11,7 +11,7 @@ class ThoughtWorkerRepository
   def find_by_role_and_location role, location
     connection = r.connect(:host => 'rethinkdb', :port => 28015)
     people = r.db('dev').table('people')
-    people.filter(:role => {:name => role}).run(connection).entries.to_json
+    people.filter(:role => {:name => role}).run(connection).entries
   end
 
 
