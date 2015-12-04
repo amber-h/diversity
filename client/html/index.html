@@ -4,49 +4,15 @@
     <title>Diversity</title>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans"/>
     <link rel="stylesheet" href="index.css" />
+    
+    <script src="lib/external/require.js"></script>
+    <script src="lib/external/jquery.js"></script>
+    <script src="bootstrap.js"></script>
   </head>
   <body>
     <div class="header"><h1>Diversity</h1></div>
     <div id="query"></query>
     <table id="results"></table>
-    <script src="lib/external/require.js"></script>
-    <script src="lib/external/jquery.js"></script>
-    <script src="bootstrap.js"></script>
-    <script>
-      require(["lib/phrasal_template/index", "lib/query_builder/index", "lib/query_service/index"],
-                      function (PhrasalTemplate, QueryBuilder, QueryService) {
-        var defaultGroup = {name : "group", value : "gender" };
-        var defaultRole = {name : "role", value : "PS" };
-        var defaultLocation = {name : "location", value : "The World" };
-
-        var defaultOptions = [defaultGroup, defaultRole, defaultLocation];
-        defaultOptions.forEach(function(option) {
-          QueryBuilder(option);
-        });
-
-        $("#query").append(PhrasalTemplate([
-          {type: "collocation", value: "By "},
-          {type: "slot", value: {name: "group", options: ["gender"], onchange: function (value) {
-            var queryOptions = QueryBuilder(value);
-            console.log(queryOptions);
-            QueryService(queryOptions);
-          }}},
-          {type: "collocation", value: ", how many "},
-          {type: "slot", value: {name: "role", options: ["PS", "Dev", "BA", "QA", "PM"], onchange: function (value) {
-            var queryOptions = QueryBuilder(value);
-            console.log(queryOptions);
-            QueryService(queryOptions);
-          }}},
-          {type: "collocation", value: " ThoughtWorkers are there in "},
-          {type: "slot", value: {name: "location", options: ["The World", "North America"], onchange: function (value) {
-            var queryOptions = QueryBuilder(value);
-            console.log(queryOptions);
-            QueryService(queryOptions);
-          }}},
-          {type: "collocation", value: "?"},
-        ]));
-
-      });
-    </script>
+    <script src="app.js"></script>
   </body>
 </html>
