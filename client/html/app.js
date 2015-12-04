@@ -1,5 +1,5 @@
-require(["lib/phrasal_template/index", "lib/query_builder/index", "lib/query_service/index"],
-                function (PhrasalTemplate, QueryBuilder, QueryService) {
+require(["lib/phrasal_template/index", "lib/query_builder/index", "lib/query_service/index", "lib/results_table/index"],
+                function (PhrasalTemplate, QueryBuilder, QueryService, ResultsTable) {
   var defaultGroup = {name : "group", value : "gender" };
   var defaultRole = {name : "role", value : "PS" };
   var defaultLocation = {name : "location", value : "The World" };
@@ -30,5 +30,7 @@ require(["lib/phrasal_template/index", "lib/query_builder/index", "lib/query_ser
     }}},
     {type: "collocation", value: "?"},
   ]));
+
+  QueryService(QueryBuilder(defaultGroup))
 
 });
