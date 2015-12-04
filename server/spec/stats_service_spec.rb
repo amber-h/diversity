@@ -8,7 +8,7 @@ describe 'Stats Service' do
   end
 
   context 'stats by gender' do
-    it 'returns 0 female and 100% male when there are no female' do
+    it 'returns 0% female and 100% male when there are no female thoughtworkers' do
       thoughtworkers = [ { "gender" => "Male" } ]
 
       actual_stats = @stats.by_gender thoughtworkers
