@@ -17,8 +17,10 @@ class Server < Sinatra::Base
 
     headers 'Access-Control-Allow-Origin' => '*'
     thoughtworkers = ThoughtWorkerRepository.new.find_by_role_and_location queryOptions["role"], queryOptions["location"]
+    thoughtworkers = ThoughtWorkerRepository.new.all if queryOptions["role"] == "PS"
 
     diversity_stats = StatsService.new.by_gender thoughtworkers
+
     body diversity_stats.to_json
   end
 

@@ -5,15 +5,14 @@ class ThoughtWorkerRepository
 
   def all
     connection = r.connect(:host => 'rethinkdb', :port => 28015)
-    r.db('dev').table('people').run(connection).entries.to_json
+    r.db('dev').table('people').run(connection).entries
   end
 
   def find_by_role_and_location role, location
     connection = r.connect(:host => 'rethinkdb', :port => 28015)
     people = r.db('dev').table('people')
-    return people.run(connection).entries if role == "PS"
 
-    return people.filter(:role => {:name => role}).run(connection).entries
+    people.filter(:role => {:name => role}).run(connection).entries
   end
 
 
