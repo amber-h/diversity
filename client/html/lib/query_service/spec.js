@@ -2,7 +2,7 @@ define(["./index"], function (QueryService) {
 
   describe("a Query Service", function () {
 
-    describe("Query Builder", function () {
+    describe("Query Service", function () {
       it("is defined", function () {
         expect(QueryService).toBeDefined();
       });

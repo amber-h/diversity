@@ -1,4 +1,5 @@
 require 'rethinkdb'
+require './lib/locations'
 include RethinkDB::Shortcuts
 
 class ThoughtWorkerRepository
@@ -12,9 +13,26 @@ class ThoughtWorkerRepository
     @db.table('people').run(@connection).entries
   end
 
-  def find_by_role_and_location role, location
+  def find_by_role_and_location role, location_group
     people = @db.table('people')
-    people.filter(:role => {:name => role}).run(@connection).entries
+    locations = Locations.get_locations_in_group location_group
+
+    return filter_for_all_roles_by people, locations if role == "PS"
+    return filter_by people, locations, role
+  end
+
+  private
+
+  def filter_for_all_roles_by people, locations
+    people.filter{ |person|
+      (r.expr(locations).contains(person[:homeOffice][:name]))
+    }.run(@connection).entries
+  end
+
+  def filter_by people, locations, role
+    people.filter{ |person|
+      (person[:role][:name].eq(role)) & (r.expr(locations).contains(person[:homeOffice][:name]))
+    }.run(@connection).entries
   end
 
 end
