@@ -16,12 +16,12 @@ require(["lib/phrasal_template/index", "lib/query_builder/index", "lib/query_ser
       QueryService(queryOptions);
     }}},
     {type: "collocation", value: ", how many "},
-    {type: "slot", value: {name: "role", options: ["PS", "Dev", "BA", "QA", "PM"], onchange: function (value) {
+    {type: "slot", value: {name: "role", options: ["PS", "Dev", "BA", "QA", "PM", "DevOps"], onchange: function (value) {
       var queryOptions = QueryBuilder(value);
       QueryService(queryOptions);
     }}},
     {type: "collocation", value: " ThoughtWorkers are there in "},
-    {type: "slot", value: {name: "location", options: ["The World", "North America", "Europe", "India", "China", "Brazil", "Australia"], onchange: function (value) {
+    {type: "slot", value: {name: "location", options: ["The World", "North America", "South America", "Europe", "Africa", "India", "China", "Brazil", "Australia"], onchange: function (value) {
       var queryOptions = QueryBuilder(value);
       QueryService(queryOptions);
     }}},
