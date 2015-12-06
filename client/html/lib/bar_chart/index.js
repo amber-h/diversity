@@ -10,17 +10,29 @@ define([], function() {
           ['Female', json_data.female.count],
           ['Male', json_data.male.count]
         ],
+        labels: true,
         type: 'bar',
         colors: {
-          Female: '#6ed3cf',
-          Male: '#9068be'
+          Female: 'rgb(38,189,207)',
+          Male: 'rgb(17,170,88)'
         }
       },
       bar: {
         width: {
           ratio: 0.5
         }
-      }
+      },
+      axis: {
+        y: {
+          label: {
+            text: 'Number of ThoughtWorkers',
+            position: 'outer-middle'
+          }
+        }
+      },
+      transition: {
+        duration: 100
+    }
     });
   }
 });

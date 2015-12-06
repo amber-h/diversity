@@ -16,7 +16,6 @@ select {
   font-size: 1.3rem;
   -webkit-appearance: none;
   border: none;
-  background-color: rgba(255, 255, 255, 1);
   border-radius: 0;
 }
 
@@ -39,7 +38,7 @@ option {
 }
 
 .slot {
-  background-color: #6ed3cf;
+  background-color: rgb(239,91,161);
   height: 3rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -49,7 +48,7 @@ option {
 .header {
   padding-top: 0.01rem;
   padding-bottom: 0.01rem;
-  background-color: #55595d;
+  background-color: rgb(38,189,207);
 }
 
 .phrasal-template {
