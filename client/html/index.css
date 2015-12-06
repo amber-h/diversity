@@ -39,16 +39,17 @@ option {
 }
 
 .slot {
-  background-color: rgba(60, 188, 141, 0.7);
+  background-color: #6ed3cf;
   height: 3rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  color: #fff;
 }
 
 .header {
   padding-top: 0.01rem;
   padding-bottom: 0.01rem;
-  background-color: rgba(38, 189, 207, 1);
+  background-color: #55595d;
 }
 
 .phrasal-template {
@@ -60,4 +61,21 @@ option {
 
 @media (max-width:500px) {
   .slot { width: 100%;}
+}
+
+#stats {
+  margin: auto;
+  max-width: 800px;
+  padding: 10px;
+  display: table;
+}
+
+#results {
+  float: left;
+  margin-top: 5%;
+}
+
+#chart {
+  max-width: 400px;
+  float: left;
 }

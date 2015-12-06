@@ -1,4 +1,4 @@
-define(['../results_table/index'], function(ResultsTable) {
+define(['../results_table/index', '../bar_chart/index'], function(ResultsTable, BarChart) {
   return function(queryOptions) {
 
     var sendRequest = function(request) {
@@ -6,6 +6,7 @@ define(['../results_table/index'], function(ResultsTable) {
         function(data, status) {
           $('#results').empty()
           $('#results').append(ResultsTable(JSON.parse(data)));
+          BarChart(data);
         });
     };
 
