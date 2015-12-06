@@ -47,6 +47,25 @@ describe 'Stats Service' do
       expect(actual_stats).to eq(expected_stats)
     end
 
+    it 'defaults the percentage to 0 when there are 0 results' do
+      thoughtworkers = []
+
+      actual_stats = @stats.by_gender thoughtworkers
+
+      expected_stats = {
+        :male => {
+                :count => 0,
+                :percentage => 0
+              },
+        :female => {
+                :count => 0,
+                :percentage => 0
+              }
+          }
+
+      expect(actual_stats).to eq(expected_stats)
+    end
+
   end
 
 end
