@@ -30,9 +30,18 @@ define([], function() {
           }
         }
       },
-      transition: {
-        duration: 100
-    }
+      oninit: function() {
+        this.main.append('rect')
+          .style('fill', 'white')
+          .attr('x', 0.5)
+          .attr('y', -0.5)
+          .attr('width', this.width)
+          .attr('height', this.height)
+          .transition().duration(1000)
+          .attr('y', -this.height)
+          .attr('height', this.height)
+          .remove();
+      }
     });
   }
 });
