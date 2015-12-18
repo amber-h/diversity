@@ -14,9 +14,11 @@ module Locations
   CHINA = { "China" => [ "Xi'an", "Shanghai", "Beijing", "Chengdu", "Wuhan" ] }
   BRAZIL = { "Brazil" => [ "Porto Alegre", "Belo Horizonte", "Recife", "Sao Paulo"] }
   AUSTRALIA = { "Australia" => [ "Perth", "Melbourne", "Brisbane", "Sydney"] }
+  CANADA = { "Canada" => [ "Toronto", "Calgary" ] }
+  GERMANY = { "Germany" => [ "Hamburg", "Berlin" ] }
 
   def self.all_location_groups
-    [ALL, NORTH_AMERICA, EUROPE, AFRICA, SOUTH_AMERICA, INDIA, CHINA, BRAZIL, AUSTRALIA]
+    [ALL, NORTH_AMERICA, EUROPE, AFRICA, SOUTH_AMERICA, INDIA, CHINA, BRAZIL, AUSTRALIA, CANADA, GERMANY]
   end
 
   def self.get_locations_in_group group
